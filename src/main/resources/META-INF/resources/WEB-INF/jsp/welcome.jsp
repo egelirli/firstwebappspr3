@@ -4,7 +4,7 @@
 </head>
 
 <body>
-  <div> Weclocme to egelirli first web app! </div>
+  <div> Weclocme to egelirlis first web app! </div>
   <div>  Your Name ${name} </div>
 </body>
 </html> 
