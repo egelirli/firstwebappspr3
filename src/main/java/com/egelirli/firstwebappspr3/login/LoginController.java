@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {
 
 	@Autowired
-	private UserValidationService  userService;
+	private AuthenticationService  userService;
 
 	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
@@ -23,30 +25,29 @@ public class LoginController {
 	}
 
 	
-	@RequestMapping(name = "login2", method = RequestMethod.GET)
-	public String gotoLoginPostPage() {
-			return "welcome";
-		
-	}
-	
-	
-//	@RequestMapping(name = "login", method = RequestMethod.POST)
-//	public String gotoLoginPostPage(
-//			                    @RequestParam String name,
-//								@RequestParam String password,
-//								ModelMap model) {
-//		
-//		if(userService.isUserValid(name, password)) {
-//			model.put("name", name);
-//			model.put("password", password);
-//			//System.out.println("Request param is " + name); //NOT RECOMMENDED FOR PROD CODE
+//	@RequestMapping(name = "login2", method = RequestMethod.GET)
+//	public String gotoLoginPostPage() {
 //			return "welcome";
-//			
-//		}else {
-//			model.put("errorMessage", "Invalid User!");
-//			return "login";
-//		}
+//		
 //	}
+	
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String gotoLoginPostPage(
+			                    @RequestParam String name,
+								@RequestParam String password,
+								ModelMap model) {
+		
+		if(userService.isUserValid(name, password)) {
+			model.put("name", name);
+			//System.out.println("Request param is " + name); //NOT RECOMMENDED FOR PROD CODE
+			return "welcome";
+			
+		}else {
+			model.put("errorMessage", "Invalid User!");
+			return "login";
+		}
+	}
 
 	@RequestMapping(value = "welcome", method = RequestMethod.GET)
 	public String goToWelcomePage() {

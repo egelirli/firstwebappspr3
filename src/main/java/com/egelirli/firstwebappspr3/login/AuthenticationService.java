@@ -3,7 +3,7 @@ package com.egelirli.firstwebappspr3.login;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserValidationService {
+public class AuthenticationService {
      
 	public boolean isUserValid(String user, String password) {
 		
