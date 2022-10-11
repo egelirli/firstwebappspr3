@@ -4,8 +4,8 @@
 </head>
 
 <body>
-  <div> Weclocme to egelirlis first web app! </div>
-  <div>  Your Name ${name} </div>
+  <div> Weclocme  ${name} </div>
+  <hr>
   <div>  <a href="list-todos">  Manage </a> your todos :  </div>
 </body>
 </html> 
