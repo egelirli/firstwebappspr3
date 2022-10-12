@@ -4,9 +4,11 @@
 </head>
 
 <body>
-  <div> Weclocme  ${name} </div>
-  <hr>
-  <div>  <a href="list-todos">  Manage </a> your todos :  </div>
+  <div class="container"> 
+  <h1> Weclocme  ${name} </h1>
+  
+    <a href="list-todos">  Manage </a> your todos   
+  </div>
 </body>
 </html> 
 
