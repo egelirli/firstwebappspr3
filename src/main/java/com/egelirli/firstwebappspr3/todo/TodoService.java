@@ -26,8 +26,10 @@ public class TodoService {
 		return todos;
 	}
 
-	public void addNewTodo(String userName, String descript,  
-						   LocalDate targetDate, boolean isCompleted) {
+	public void addNewTodo(String userName, 
+							String descript,  
+						   LocalDate targetDate, 
+						   boolean isCompleted) {
 		
 		todos.add(new Todo(++idToDo, userName,descript,targetDate,isCompleted));
 				
