@@ -1,6 +1,7 @@
 package com.egelirli.firstwebappspr3.todo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import jakarta.validation.constraints.Size;
 
@@ -28,6 +29,30 @@ public class Todo {
 		this.targetDate = targetDate;
 		this.done = done;
 	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Todo other = (Todo) obj;
+		return id == other.id;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
