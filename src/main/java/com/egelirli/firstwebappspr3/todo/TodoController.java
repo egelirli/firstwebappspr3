@@ -56,7 +56,7 @@ public class TodoController {
 		todoService.addNewTodo(
 							  username,
 							  todo.getDescription(),
-							  LocalDate.now().plusYears(1),
+							  todo.getTargetDate(),
 							  false);
 		//List<Todo> todos = todoService.findByUsername("asdadf");
 		//model.addAttribute("todos", todos);

@@ -73,6 +73,7 @@ public class TodoService {
 		
 		if(t != null) {
 			t.setDescription(todo.getDescription());
+			t.setTargetDate(todo.getTargetDate());
 			return true;
 		}else {
 			return false;
