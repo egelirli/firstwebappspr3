@@ -3,6 +3,8 @@ package com.egelirli.firstwebappspr3.todo;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -27,7 +29,9 @@ public class TodoController {
 
 	@RequestMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
-		List<Todo> todos = todoService.findByUsername("in28minutes");
+		//String username = (String)model.get("name"); 
+		String username = getLoggedInUSerName();
+		List<Todo> todos = todoService.findByUsername(username);
 		model.addAttribute("todos", todos);
 
 		return "listTodos";
@@ -36,7 +40,8 @@ public class TodoController {
 	@RequestMapping(value = "add-todo", method = RequestMethod.GET)
 	public String showAddTodo(ModelMap model) {
 		//if authenticated
-		String username = (String)model.get("name");
+		//String username = (String)model.get("name"); ??
+		String username = getLoggedInUSerName();
 		Todo todo = new Todo(0, username, "Default Desc", LocalDate.now().plusYears(1), false);
 		model.put("todo", todo);		
 		return "addTodo";
@@ -52,7 +57,8 @@ public class TodoController {
 		if(result.hasErrors()) {
 			return "addTodo";
 		}
-		String username = (String)model.get("name");
+		//String username = (String)model.get("name");
+		String username = getLoggedInUSerName();
 		todoService.addNewTodo(
 							  username,
 							  todo.getDescription(),
@@ -109,7 +115,12 @@ public class TodoController {
 		
 	}
 	
-	
+	private String getLoggedInUSerName() {
+		
+		Authentication  authent =
+					SecurityContextHolder.getContext().getAuthentication();
+		return authent.getName();
+	}	
 	
 //	@RequestMapping(value = "add-todo", method = RequestMethod.POST)
 //	public String addTodo(
