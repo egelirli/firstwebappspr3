@@ -3,24 +3,35 @@ package com.egelirli.firstwebappspr3.todo;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 //Database (MySQL) 
 //Static List of todos => Database (H2, MySQL)
 
+@Entity
 public class Todo {
 	
+	@Id
+	@GeneratedValue
 	private int id;
+	
 	private String username;
 	
 	@Size(min = 10, message = "Enter at least 10 chars!")
 	private String description;
 	private LocalDate targetDate;
+	
 	private boolean done;
 	
 	
-	
-	
+	public Todo() {
+		super();
+	}
+
 	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
